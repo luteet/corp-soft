@@ -43,7 +43,7 @@
 .ss-main .ss-values .ss-single {
 	color: #1D1D1B;
 	font-family: Gilroy;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 	line-height: 125%;
 
@@ -83,4 +83,10 @@
 
 .ss-content .ss-list .ss-option:hover {
 	background: rgba(237, 28, 35, 0.404);
+}
+
+@media (min-width: 550px) {
+	.ss-main .ss-values .ss-single {
+		font-size: 16px;
+	}
 }
