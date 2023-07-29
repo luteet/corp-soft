@@ -1,0 +1,86 @@
+.ss-main {
+	padding: 17px 24px;
+	width: 100%;
+	outline: none;
+
+	border-radius: 12px;
+	border: 1px solid #EDEFF3;
+	background: #FFF;
+
+	transition: border-color .2s ease, background .2s ease, border-radius .2s ease;
+}
+
+.ss-main.ss-open-below {
+	background: #1F0F63;
+	border-color: #1F0F63;
+}
+
+.ss-main:focus {
+	box-shadow: none;
+}
+
+.ss-content {
+	
+	background: #1F0F63;
+	border: 0;
+	box-shadow: 0px 4px 12px 0px rgba(56, 38, 131, 0.50);
+	padding: 10px;
+}
+
+.ss-content.ss-open-below {
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
+
+.ss-content::before {
+	content: '';
+	position: absolute;
+	left: 0; top: 0;
+	width: 100%; height: 1px;
+	background: #2D1983;
+}
+
+.ss-main .ss-values .ss-single {
+	color: #1D1D1B;
+	font-family: Gilroy;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 125%;
+
+	transition: color .2s ease;
+}
+
+.ss-main.ss-open-below .ss-values .ss-single {
+	color: #fff;
+}
+
+.ss-main.ss-open-below .ss-arrow path {
+	stroke: #FFF;
+}
+
+/* .ss-main .ss-arrow {
+	display: none;
+} */
+
+.ss-content .ss-list .ss-option {
+	padding: 12px;
+	border-radius: 12px;
+	background: transparent;
+
+	color: #FFF;
+	font-family: Gilroy;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 125%;
+
+	transition: background .2s ease;
+}
+
+.ss-content .ss-list .ss-option.ss-highlighted, .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
+	background: #ED1C24;
+	font-weight: 700;
+}
+
+.ss-content .ss-list .ss-option:hover {
+	background: rgba(237, 28, 35, 0.404);
+}
