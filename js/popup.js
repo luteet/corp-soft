@@ -153,4 +153,37 @@ function generatorVh() {
 	})
 }
 
-generatorVh()
+generatorVh();
+
+const telInputs = document.querySelectorAll('[type="tel"]');
+telInputs.forEach(tel => {
+	const iti = window.intlTelInput(tel, {
+		initialCountry: "auto",
+		geoIpLookup: callback => {
+		  fetch("https://ipapi.co/json")
+			.then(res => res.json())
+			.then(data => callback(data.country_code))
+			.catch(() => callback("us"));
+		},
+		utilsScript: "utils.js?1687509211722" // just for formatting/placeholders etc
+	});
+
+	const form = tel.closest('form');
+	form.addEventListener('submit', function (event) {
+		//event.preventDefault();)
+		if(!iti.isValidNumber()) {
+			event.preventDefault();
+			tel.classList.add('error');
+		} else {
+			tel.classList.remove('error');
+		}
+	})
+
+	tel.addEventListener('input', function () {
+		if(tel.classList.contains('error')) {
+			if(iti.isValidNumber()) tel.classList.remove('error');
+		}
+	})
+	
+})
+

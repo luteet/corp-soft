@@ -214,6 +214,41 @@ body._popup-active .header {
 	border: 1px solid #EDEFF3;
 	background: #FFF;
 
+	transition: border-color .2s ease;
+
+}
+
+.leave-request-popup__item > label .error {
+	border-color: #ED1C24;
+}
+
+.iti {
+	width: 100%;
+}
+
+.iti input {
+	padding: 18px 24px;
+	width: 100%;
+	outline: none;
+	
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 125%;
+
+	border-radius: 12px;
+	border: 1px solid #EDEFF3;
+	background: #FFF;
+
+	transition: border-color .2s ease;
+}
+
+.iti__selected-flag {
+	transition: background-color .2s ease;
+	border-radius: 12px 0 0 12px;
+}
+
+.iti__country {
+	font-size: 14px;
 }
 
 .leave-request-popup__item > label > input::placeholder {
@@ -337,6 +372,14 @@ body._popup-active .header {
 	
 		border-radius: 12px;
 	
+	}
+
+	.iti__country-list {
+		transform: translate(-23%,0);
+	}
+
+	.iti input {
+		font-size: 16px;
 	}
 
 	.leave-request-popup__checkbox {
