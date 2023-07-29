@@ -155,35 +155,62 @@ function generatorVh() {
 
 generatorVh();
 
-const telInputs = document.querySelectorAll('[type="tel"]');
-telInputs.forEach(tel => {
-	const iti = window.intlTelInput(tel, {
-		initialCountry: "auto",
-		geoIpLookup: callback => {
-		  fetch("https://ipapi.co/json")
-			.then(res => res.json())
-			.then(data => callback(data.country_code))
-			.catch(() => callback("us"));
-		},
-		utilsScript: "utils.js?1687509211722" // just for formatting/placeholders etc
-	});
+$(function () {
 
-	const form = tel.closest('form');
-	form.addEventListener('submit', function (event) {
-		//event.preventDefault();)
-		if(!iti.isValidNumber()) {
-			event.preventDefault();
-			tel.classList.add('error');
-		} else {
-			tel.classList.remove('error');
-		}
-	})
+	const telInputs = document.querySelectorAll('[type="tel"]');
+	telInputs.forEach(tel => {
+		const iti = window.intlTelInput(tel, {
+			initialCountry: "auto",
+			hiddenPhoneInput: "full_number",
+			formatOnDisplay: true,
+			geoIpLookup: callback => {
+			  fetch("https://ipapi.co/json")
+				.then(res => res.json())
+				.then(data => callback(data.country_code))
+				.catch(() => callback("us"));
+			},
+			utilsScript: "utils.js" // just for formatting/placeholders etc
+		});
+		
+		//iti['a'].parentElement.insertAdjacentHTML("beforeend", `<input value />`)
 
-	tel.addEventListener('input', function () {
-		if(tel.classList.contains('error')) {
-			if(iti.isValidNumber()) tel.classList.remove('error');
-		}
-	})
+		tel.addEventListener("countrychange", function() {
+			var selectedCountryData = iti.getSelectedCountryData();
 	
+			// Get an example number for the selected country to use as placeholder.
+			newPlaceholder = intlTelInputUtils.getExampleNumber(selectedCountryData.iso2, true, intlTelInputUtils.numberFormat.INTERNATIONAL),
+	
+			// Reset the phone number input.
+			iti.setNumber("");
+	
+			// Convert placeholder as exploitable mask by replacing all 1-9 numbers with 0s
+			mask = newPlaceholder.replace(/[1-9]/g, "0");
+	
+			// Apply the new mask for the input
+			$(tel).mask(mask);
+		});
+	
+		const form = tel.closest('form');
+		form.addEventListener('submit', function (event) {
+			//event.preventDefault();)
+			
+			if(!iti.isValidNumber()) {
+				event.preventDefault();
+				tel.classList.add('error');
+			} else {
+				tel.classList.remove('error');
+			}
+		})
+
+
+	
+		tel.addEventListener('input', function () {
+			if(tel.classList.contains('error')) {
+				if(iti.isValidNumber()) tel.classList.remove('error');
+			}
+		})
+		
+	})
 })
+
 
