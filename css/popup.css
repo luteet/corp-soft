@@ -251,6 +251,11 @@ body._popup-active .header {
 	font-size: 14px;
 }
 
+.iti-mobile .iti__country-list {
+	width: calc(100vw - 30px - 30px);
+	max-height: 75%;
+}
+
 .leave-request-popup__item > label > input::placeholder {
 	color: #A5A5A5;
 	opacity: 1;
@@ -344,6 +349,10 @@ body._popup-active .header {
 }
 
 @media (min-width: 550px) {
+	.iti__country-list {
+		width: initial;
+	}
+
 	.leave-request-popup__title {
 		font-size: 32px;	
 	}
